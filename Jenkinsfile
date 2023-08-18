@@ -4,18 +4,18 @@ pipeline {
     stages {
          stage('Init') {
             steps {
-                sh 'sudo docker rm -f $(docker ps -qa) || true'
+                sh 'docker rm -f $(docker ps -qa) || true'
             }
         }
         stage('Build') {
             steps {
-                sh 'sudo docker build -t myapp .'
+                sh 'docker build -t myapp .'
             }
         }
 
         stage('Deploy') {
             steps {
-                sh 'sudo docker run -d -p 80:5500 --name myapp myapp:latest'
+                sh 'docker run -d -p 80:5500 --name myapp myapp:latest'
             }
         }
     }
